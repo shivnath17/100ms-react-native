@@ -120,18 +120,18 @@ export const MeetingScreenContent: React.FC<MeetingScreenContentProps> = ({
 
   // Handles Auto hiding the controls for the first time
   // to make this feature discoverable
-  useEffect(() => {
-    if (!!whiteboardActive) {
-      return;
-    }
-    clearTimer();
-    timerIdRef.current = setTimeout(() => {
-      timerIdRef.current = null;
-      toggleControls(true);
-    }, HeaderFooterHideDelayMs);
+  // useEffect(() => {
+  //   if (!!whiteboardActive) {
+  //     return;
+  //   }
+  //   clearTimer();
+  //   timerIdRef.current = setTimeout(() => {
+  //     timerIdRef.current = null;
+  //     toggleControls(true);
+  //   }, HeaderFooterHideDelayMs);
 
-    return clearTimer;
-  }, [clearTimer, toggleControls, !!whiteboardActive]);
+  //   return clearTimer;
+  // }, [clearTimer, toggleControls, !!whiteboardActive]);
 
   const tapGesture = Gesture.Tap()
     .enabled(Platform.select({ android: !whiteboardActive, default: true }))
@@ -162,7 +162,7 @@ export const MeetingScreenContent: React.FC<MeetingScreenContentProps> = ({
     <View style={styles.container}>
       <HMSStatusBar hidden={controlsHidden} barStyle={'light-content'} />
 
-      <GestureDetector gesture={tapGesture}>
+      {/* <GestureDetector gesture={tapGesture}> */}
         <View collapsable={false} style={styles.container}>
           {isPipModeActive && Platform.OS === 'android' ? null : (
             <AnimatedHeader offset={offset}>
@@ -178,7 +178,7 @@ export const MeetingScreenContent: React.FC<MeetingScreenContentProps> = ({
             </AnimatedFooter>
           )}
         </View>
-      </GestureDetector>
+      {/* </GestureDetector> */}
     </View>
   );
 };
